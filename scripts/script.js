@@ -64,6 +64,8 @@ function checkJsonData(jsonData, listLimitValue) {
     } else {
       return jsonData;
     }
+  } else {
+    return jsonData;
   }
 }
 
