@@ -12,7 +12,20 @@
     <div><a href="../index.html">Vrati se na početnu stranicu</a></div>
     <label for="selectList">Odaberi boju za listu pokemona</label>
     <select name="selectList" id="selectList" onChange="selectOption(this)"></select>
-
+    <select name="listLimit" id="listLimit"></select>
+    <script id="listLimit-template" type="text/x-handlebars-template">
+        {{#each limit}}
+        <option value="{{ this }}">{{ this }}</option>
+        {{/each}}
+    </script>
+    <div id="pokemon-list"></div>
+    <script id="pokemon-template" type="text/x-handlebars-template">
+        <ol>
+            {{#each pokemon}} 
+            <li>Ime pokemona je <strong>{{ this.pokemon.name }}</strong>, više informacija o ovom pokemonu se može naći na <a href="{{ this.pokemon.url }}" target="_blank">{{ this.pokemon.url }}</a></li>
+            {{/each}}
+        </ol>
+    </script>
     <script src="../scripts/script.js"></script>
 </body>
 </html>

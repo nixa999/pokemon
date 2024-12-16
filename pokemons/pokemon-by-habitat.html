@@ -22,11 +22,10 @@
     <script id="pokemon-template" type="text/x-handlebars-template">
         <ol>
             {{#each pokemon_species}} 
-            <li><strong>{{ this.name }}</strong> more info can be found <a href="{{ this.url }}">{{ this.url }}</a></li>
+            <li>Ime pokemona je <strong>{{ this.name }}</strong>, više informacija o ovom pokemonu se može naći na <a href="{{ this.url }}" target="_blank">{{ this.url }}</a></li>
             {{/each}}
         </ol>
     </script>
-
     <script src="../scripts/script.js"></script>
 </body>
 </html>
