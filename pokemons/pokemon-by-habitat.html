@@ -12,7 +12,7 @@
     <div><a href="../index.html">Vrati se na početnu stranicu</a></div>
     <label for="selectList">Odaberi stanište za listu pokemona</label>
     <select name="selectList" id="selectList" onChange="selectOption(this)"></select>
-    <select name="listLimit" id="listLimit"></select>
+    <select name="listLimit" id="listLimit" onChange="selectLimit(this)"></select>
     <script id="listLimit-template" type="text/x-handlebars-template">
         {{#each limit}}
         <option value="{{ this }}">{{ this }}</option>

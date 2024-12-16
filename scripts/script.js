@@ -30,6 +30,11 @@ function createLimit() {
   document.getElementById("listLimit").innerHTML = html;
 }
 
+function selectLimit(limitValue){
+  let selectObject = document.getElementById("selectList");
+  selectOption(selectObject);
+}
+
 // Display the list of pokemon
 function selectOption(selectObject) {
   let value = selectObject.value;
