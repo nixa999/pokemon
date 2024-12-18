@@ -70,6 +70,7 @@ function displayPokemon(event) {
         const html = template(jsonData);
         renderPokemonSpecies.innerHTML = html;
         renderPokemonSpecies.style.display = "inherit";
+        renderPokemon.innerHTML = "";
         for (let index = 0; index < jsonData.varieties.length; index++) {
           const element = jsonData.varieties[index];
           fetch(element.pokemon.url)
@@ -80,7 +81,7 @@ function displayPokemon(event) {
                 document.getElementById("pokemon-template").innerHTML;
               const template = Handlebars.compile(source);
               const html = template(jsonData);
-              renderPokemon.append(html);
+              renderPokemon.insertAdjacentHTML("beforeend",html);
             });
           console.log(element);
         }
