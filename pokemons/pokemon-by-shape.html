@@ -56,12 +56,53 @@
             {{/each}}
     </script>
     <div id="pokemon-list"></div>
-    <script id="pokemon-template" type="text/x-handlebars-template">
-        <ol>
+    <script id="pokemonList-template" type="text/x-handlebars-template">
+        <ol class="list-group list-group-numbered">
             {{#each pokemon_species}} 
-            <li>Ime pokemona je <strong>{{ this.name }}</strong>, više informacija o ovom pokemonu se može naći na <a href="{{ this.url }}" target="_blank">{{ this.url }}</a></li>
+            <li class="list-group-item">Ime pokemona je <strong><a class="pokemon-link" href="{{ this.url }}" target="_blank">{{ this.name }}</a></strong></li>
             {{/each}}
         </ol>
+    </script>
+    <div id="pokemon-species"></div>
+    <div id="pokemon" class="row row-cols-1 row-cols-md-3 g-4"></div>
+    <script id="pokemonSpecies-template" type="text/x-handlebars-template">
+      <div class="row">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Osnovni podaci o pokemon vrsti {{ this.name }}</h5>
+              <ul class="list-group">
+                <li class="list-group-item">Osnovna vrijednost sreće - {{this.base_happiness}}</li>
+                <li class="list-group-item">šansa za hvatanje - {{this.capture_rate}}</li>
+                <li class="list-group-item">Grupe jaja -
+                  {{#each egg_groups}} 
+                    {{ this.name }},
+                  {{/each}}
+                </li>
+                <li class="list-group-item">Brzina rasta - {{growth_rate.name}}</li>
+                <li class="list-group-item">Stanište pokemona - {{habitat.name}}</li>
+                <li class="list-group-item">Oblik pokemona- {{shape.name}}</li>
+                <li class="list-group-item">Verzije pokemona - 
+                  {{#each varieties}} 
+                    {{ this.pokemon.name }},
+                  {{/each}}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </script>
+    <script id="pokemon-template" type="text/x-handlebars-template">
+      <div class="col">
+        <div class="card">
+          <img src="{{sprites.front_default}}" class="card-img-top" alt="{{name}}">
+          <div class="card-body">
+            <h5 class="card-title">{{name}}</h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          </div>
+        </div>
+      </div>
     </script>
     <script src="../scripts/script.js"></script>
 </body>

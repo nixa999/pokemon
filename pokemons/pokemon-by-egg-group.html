@@ -56,10 +56,10 @@
             {{/each}}
     </script>
     <div id="pokemon-list"></div>
-    <script id="pokemon-template" type="text/x-handlebars-template">
-        <ol>
+    <script id="pokemonList-template" type="text/x-handlebars-template">
+      <ol class="list-group list-group-numbered">
             {{#each pokemon_species}} 
-            <li>Ime pokemona je <strong>{{ this.name }}</strong>, više informacija o ovom pokemonu se može naći na <a href="{{ this.url }}" target="_blank">{{ this.url }}</a></li>
+            <li class="list-group-item">Ime pokemona je <strong><a class="pokemon-link" href="{{ this.url }}" target="_blank">{{ this.name }}</a></strong></li>
             {{/each}}
         </ol>
     </script>

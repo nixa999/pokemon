@@ -1,6 +1,9 @@
 const body = document.querySelector("body");
 const selectList = document.querySelector("#selectList");
 const url = "https://pokeapi.co/api/v2/";
+const renderList = document.getElementById("pokemon-list");
+const renderPokemonSpecies = document.getElementById("pokemon-species");
+const renderPokemon = document.getElementById("pokemon");
 let list = document.querySelector("#selectList");
 
 // Get list for sorting
@@ -30,7 +33,7 @@ function createLimit() {
   document.getElementById("listLimit").innerHTML = html;
 }
 
-function selectLimit(limitValue){
+function selectLimit(limitValue) {
   let selectObject = document.getElementById("selectList");
   selectOption(selectObject);
 }
@@ -43,11 +46,46 @@ function selectOption(selectObject) {
     .then((data) => data.json())
     .then((jsonData) => {
       jsonData = checkJsonData(jsonData, listLimitValue);
-      const source = document.getElementById("pokemon-template").innerHTML;
+      const source = document.getElementById("pokemonList-template").innerHTML;
       const template = Handlebars.compile(source);
       const html = template(jsonData);
-      document.getElementById("pokemon-list").innerHTML = html;
+      renderPokemonSpecies.style.display = "none";
+      renderList.innerHTML = html;
+      renderList.style.display = "inherit";
     });
+  document.addEventListener("click", displayPokemon);
+}
+
+function displayPokemon(event) {
+  if (event.target.className === "pokemon-link") {
+    event.preventDefault();
+    fetch(event.target.href)
+      .then((data) => data.json())
+      .then((jsonData) => {
+        renderList.style.display = "none";
+        const source = document.getElementById(
+          "pokemonSpecies-template"
+        ).innerHTML;
+        const template = Handlebars.compile(source);
+        const html = template(jsonData);
+        renderPokemonSpecies.innerHTML = html;
+        renderPokemonSpecies.style.display = "inherit";
+        for (let index = 0; index < jsonData.varieties.length; index++) {
+          const element = jsonData.varieties[index];
+          fetch(element.pokemon.url)
+            .then((data) => data.json())
+            .then((jsonData) => {
+              console.log(jsonData);
+              const source =
+                document.getElementById("pokemon-template").innerHTML;
+              const template = Handlebars.compile(source);
+              const html = template(jsonData);
+              renderPokemon.append(html);
+            });
+          console.log(element);
+        }
+      });
+  }
 }
 
 // Check for response structure
